@@ -1,0 +1,67 @@
+Group {
+ name emEdgeSatCorrect1
+ inputs 2
+ tile_color 0x6b93baff
+ addUserKnob {20 User l emEdgeSatCorrect t "Correct broken pixels in the edges with DMP."}
+ addUserKnob {26 info l Info: T "<font color=\"orange\">Put this node after your DMP layer and before going to all the CG layers.\nConnect the 'CG_Alpha' to your layers merged with the 'Channel Merge' node with the union operation."}
+ addUserKnob {26 gap01 l "" +STARTLINE T " "}
+ addUserKnob {26 Autor l "" +STARTLINE T "<font color=\"grey\">emEdgeSatCorrect v.1.0 | emateofabregas - 2024"}
+}
+ Constant {
+  inputs 0
+  color {0 0 0 1}
+  name Constant1
+  xpos 130
+  ypos 204
+ }
+ Input {
+  inputs 0
+  name InputCG_Alpha
+  xpos 12
+  ypos 183
+  number 1
+ }
+ Switch {
+  inputs 2
+  which {{"!\[exists parent.input1]"}}
+  name SwitchMask
+  xpos 11
+  ypos 228
+ }
+ Input {
+  inputs 0
+  name InputImg
+  xpos -99
+  ypos 94
+ }
+ Dot {
+  name Dot1
+  xpos -65
+  ypos 151
+ }
+set N84d14c00 [stack 0]
+ Saturation {
+  saturation 0
+  name Saturation1
+  xpos -99
+  ypos 179
+ }
+push $N84d14c00
+ Dot {
+  name Dot6
+  xpos -165
+  ypos 151
+ }
+ Merge2 {
+  inputs 2+1
+  operation copy
+  name Merge2
+  xpos -99
+  ypos 228
+ }
+ Output {
+  name Output1
+  xpos -99
+  ypos 266
+ }
+end_group
